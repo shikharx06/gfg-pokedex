@@ -1,9 +1,10 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import './App.css';
-import Dashboard from './Dashboard';
-import PokemonDetails from './PokemonDetails';
+import Dashboard from './pages/dashboard/Dashboard';
+import PokemonDetails from './pages/pokemonDetails/PokemonDetails';
 
 function App() {
+  // https://reactrouter.com/en/main/router-components/browser-router
   return (
     <>
       <BrowserRouter basename="/">

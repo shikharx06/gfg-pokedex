@@ -1,7 +1,6 @@
-import React from 'react';
 import { useParams } from 'react-router-dom';
-import { Card } from './Dashboard';
-import { pokemonData } from './data';
+import { pokemonData } from '../../data';
+import { PokeCard } from '../dashboard/subComponents/PokeCards';
 
 const PokemonDetails = () => {
   // for js just do useParams();
@@ -15,11 +14,7 @@ const PokemonDetails = () => {
     return <div>Pokemon not found.</div>;
   }
 
-  return (
-    <div>
-      <Card pokemonName={pokemon?.name} pokemonDataUrl={pokemon.url} />
-    </div>
-  );
+  return <PokeCard pokemonName={pokemon?.name} pokemonDataUrl={pokemon.url} />;
 };
 
 export default PokemonDetails;
