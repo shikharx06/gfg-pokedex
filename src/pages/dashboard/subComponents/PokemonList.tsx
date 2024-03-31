@@ -1,32 +1,16 @@
-import { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { PokeCard } from './PokeCards';
-import { fetchPokemons } from '../../../apis/fetchPokemons';
-import { Loader } from '../../../components/loader';
 
 type PokemonListData = {
   count: number;
   results: { name: string; url: string }[];
 };
 
-export const PokemonList = () => {
-  const [pokemonData, setPokemonData] = useState<PokemonListData>({
-    count: 0,
-    results: [],
-  });
-
-  const [isLoading, setIsLoading] = useState<boolean>(true);
-
-  useEffect(() => {
-    fetchPokemons().then((res: PokemonListData | undefined) => {
-      if (res) {
-        setPokemonData(res);
-      }
-    });
-
-    // uncomment this to see debug loading
-    setIsLoading(false);
-  }, []);
-
+export const PokemonList = ({
+  pokemonData,
+}: {
+  pokemonData: PokemonListData;
+}) => {
   const [searchValue, setSearchValue] = useState<string>('');
 
   const matchingPokemons = (pokemonData as PokemonListData)?.results?.filter(
@@ -35,8 +19,6 @@ export const PokemonList = () => {
         ? pokemon.name.toLowerCase().includes(searchValue.toLowerCase())
         : true
   );
-
-  if (isLoading) return <Loader />;
 
   return (
     <>
